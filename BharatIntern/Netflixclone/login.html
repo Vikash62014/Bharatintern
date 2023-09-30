@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Sign In</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #141414;
+            color: #fff;
+            background-image: url(netflix.jpg);
+        }
+
+        .sign-in-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .sign-in-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background: #e50914;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sign-in-btn:hover {
+            background: #ff0000;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body background="netflix.jpg">
+    <div class="sign-in-container">
+        <h1>Sign In</h1>
+        <form>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="sign-in-btn">Sign In</button>
+        </form>
+        <div class="footer">
+            <p>Don't have an account? <a href="signup.html">Sign up now</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #13cd4b;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    
+}
+
+    #converter {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #header {
+      background: #3498db;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #content {
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    #result {
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div id="converter">
+  <div id="header">
+    <h2>Temperature Converter</h2>
+  </div>
+
+  <div id="content">
+    <label for="temperature">Enter Temperature:</label>
+    <input type="text" id="temperature" placeholder="Enter temperature..." />
+
+    <label for="fromScale">From Scale:</label>
+    <select id="fromScale">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+
+    <label for="toScale">To Scale:</label>
+    <select id="toScale">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <div id="result"></div>
+  </div>
+</div>
+
+<script>
+  function convertTemperature() {
+    var temperatureInput = document.getElementById('temperature').value;
+    var fromScale = document.getElementById('fromScale').value;
+    var toScale = document.getElementById('toScale').value;
+
+    if (isNaN(temperatureInput)) {
+      alert('Please enter a valid number for temperature.');
+      return;
+    }
+
+    var convertedTemperature;
+    switch (fromScale) {
+      case 'celsius':
+        convertedTemperature = convertFromCelsius(parseFloat(temperatureInput), toScale);
+        break;
+      case 'fahrenheit':
+        convertedTemperature = convertFromFahrenheit(parseFloat(temperatureInput), toScale);
+        break;
+      case 'kelvin':
+        convertedTemperature = convertFromKelvin(parseFloat(temperatureInput), toScale);
+        break;
+      default:
+        alert('Invalid from scale selected.');
+        return;
+    }
+
+    document.getElementById('result').innerText = `Converted Temperature: ${convertedTemperature.toFixed(2)} ${toScale.toUpperCase()}`;
+  }
+
+  function convertFromCelsius(temperature, toScale) {
+    switch (toScale) {
+      case 'celsius':
+        return temperature;
+      case 'fahrenheit':
+        return (temperature * 9 / 5) + 32;
+      case 'kelvin':
+        return temperature + 273.15;
+      default:
+        alert('Invalid to scale selected.');
+        return NaN;
+    }
+  }
+
+  function convertFromFahrenheit(temperature, toScale) {
+    switch (toScale) {
+      case 'celsius':
+        return (temperature - 32) * 5 / 9;
+      case 'fahrenheit':
+        return temperature;
+      case 'kelvin':
+        return (temperature - 32) * 5 / 9 + 273.15;
+      default:
+        alert('Invalid to scale selected.');
+        return NaN;
+    }
+  }
+
+  function convertFromKelvin(temperature, toScale) {
+    switch (toScale) {
+      case 'celsius':
+        return temperature - 273.15;
+      case 'fahrenheit':
+        return (temperature - 273.15) * 9 / 5 + 32;
+      case 'kelvin':
+        return temperature;
+      default:
+        alert('Invalid to scale selected.');
+        return NaN;
+    }
+  }
+</script>
+</body>
+</html>
